@@ -13,10 +13,12 @@ from nltk.corpus import stopwords
 from collections import defaultdict
 from smart_open import open
 
-#logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s')
-#logging.root.setLevel(level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s')
+logging.root.setLevel(level=logging.DEBUG)
 
+target = 'Gutenberg300'
 path = 'C:\\Users\\Terolli\\Desktop\\LDA model\\'
+dataset_path = 'C:\\Users\\Terolli\\Desktop\\Gutenberg_files\\'
 
 
 def preprocess(directory):
@@ -47,17 +49,8 @@ def preprocess(directory):
                 lemma = WordNetLemmatizer()
                 tokens = [lemma.lemmatize(token) for token in tokens]
 
-                # compute bigrams
-                
-                file = open(path + "bigrams.txt", "a")
-                bigrams = Phrases(tokens, min_count=10, threshold=10)
-                for word in bigrams[tokens]:
-                    print(word)
-                    if '_' in word:
-                        tokens.append(word)
-                        #file.write(word + "\n")
-                file.close()
-                
+                # TODO
+                # compute bigrams            
 
                 yield tokens
 
@@ -72,7 +65,7 @@ class SmallCorpus(object):
         self.dictionary = gensim.corpora.Dictionary(preprocess(dir))
         self.dictionary.filter_extremes(no_below=20, no_above=0.4)
         self.dictionary.compactify()
-        self.dictionary.save(path + 'dictionary.dict')
+        self.dictionary.save(path + target + '_corpus+dictionary\\dictionary.dict')
 
     def __iter__(self):
         for tokens in preprocess(self.dir):
@@ -82,17 +75,18 @@ class SmallCorpus(object):
         return len(self.dictionary)
 
 
-docs = SmallCorpus(path + 'Gutenberg_300')
-corpora.MmCorpus.serialize(path + 'mycorpus.mm', docs)
+docs = SmallCorpus(dataset_path + target)
+corpora.MmCorpus.serialize(path + target + '_corpus+dictionary\\mycorpus.mm', docs)
+
 
 """
-the_dict = corpora.Dictionary.load(path + 'dictionary.dict')
+the_dict = corpora.Dictionary.load(path + target + '_corpus+dictionary\\dictionary.dict')
 print(len(the_dict))
 
 for word in the_dict.token2id:
     print(word)
 
-corpus = corpora.MmCorpus(path + 'mycorpus.mm')
+corpus = corpora.MmCorpus(path + target + '_corpus+dictionary\\mycorpus.mm')
 for doc in corpus:
     print(doc)
 """

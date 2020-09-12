@@ -13,7 +13,10 @@ logging.root.setLevel(level=logging.DEBUG)
 path = 'C:\\Users\Terolli\\Desktop\\LDA model\\'
 
 the_dict = corpora.Dictionary.load(path + 'dictionary.dict')
+print(len(the_dict))
 for word in the_dict.token2id:
     print(word)
 
-corpus = corpora.MmCorpus(path + 'mycorpus.mm')
+#corpus = corpora.MmCorpus(path + 'mycorpus.mm')
+#for doc in corpus:
+ #   print(doc)
