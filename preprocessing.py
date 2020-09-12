@@ -16,7 +16,7 @@ from smart_open import open
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s')
 logging.root.setLevel(level=logging.DEBUG)
 
-target = 'Gutenberg300'
+target = 'Gutenberg3000'
 path = 'C:\\Users\\Terolli\\Desktop\\LDA model\\'
 dataset_path = 'C:\\Users\\Terolli\\Desktop\\Gutenberg_files\\'
 
