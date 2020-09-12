@@ -77,16 +77,3 @@ class SmallCorpus(object):
 
 docs = SmallCorpus(dataset_path + target)
 corpora.MmCorpus.serialize(path + target + '_corpus+dictionary\\mycorpus.mm', docs)
-
-
-"""
-the_dict = corpora.Dictionary.load(path + target + '_corpus+dictionary\\dictionary.dict')
-print(len(the_dict))
-
-for word in the_dict.token2id:
-    print(word)
-
-corpus = corpora.MmCorpus(path + target + '_corpus+dictionary\\mycorpus.mm')
-for doc in corpus:
-    print(doc)
-"""

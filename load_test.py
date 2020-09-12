@@ -6,17 +6,19 @@ import logging
 from gensim import corpora, utils
 from gensim.corpora import Dictionary
 
-
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s')
 logging.root.setLevel(level=logging.DEBUG)
 
-path = 'C:\\Users\Terolli\\Desktop\\LDA model\\'
+target = 'Gutenberg3000'
+path = 'C:\\Users\\Terolli\\Desktop\\LDA model\\'
 
-the_dict = corpora.Dictionary.load(path + 'dictionary.dict')
+"""
+the_dict = corpora.Dictionary.load(path + target + '_corpus+dictionary\\dictionary.dict')
 print(len(the_dict))
 for word in the_dict.token2id:
     print(word)
 
-#corpus = corpora.MmCorpus(path + 'mycorpus.mm')
-#for doc in corpus:
- #   print(doc)
+corpus = corpora.MmCorpus(path + target + '_corpus+dictionary\\mycorpus.mm')
+for doc in corpus:
+    print(doc)
+"""
