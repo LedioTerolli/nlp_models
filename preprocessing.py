@@ -7,7 +7,7 @@ import nltk
 from gensim import corpora, utils
 from gensim.models import LdaModel, Phrases
 from gensim.corpora import Dictionary
-from nltk.tokenize import WordPunctTokenizer, RegexpTokenizer
+from nltk.tokenize import RegexpTokenizer
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from collections import defaultdict
@@ -35,9 +35,12 @@ def preprocess(directory):
                 stoplist = set(stopwords.words('english'))
 
                 # tokenize document
-                tk = RegexpTokenizer(r'\w+')
+                tk = RegexpTokenizer(r'[a-zA-Z]+')
                 tokens = [token for token in tk.tokenize(
-                    document) if token not in stoplist or len(token) > 1]
+                    document) if token not in stoplist]
+
+                # remove words with length 1
+                tokens = [token for token in tokens if len(token) > 1]
 
                 # remove words with frequency == 1
                 frequency = defaultdict(int)
@@ -50,7 +53,8 @@ def preprocess(directory):
                 tokens = [lemma.lemmatize(token) for token in tokens]
 
                 # TODO
-                # compute bigrams            
+                # compute bigrams
+                # remove numbers
 
                 yield tokens
 
