@@ -5,7 +5,7 @@ import re
 import logging
 import nltk
 from gensim import corpora, utils
-from gensim.models import LdaModel, Phrases
+from gensim.models import Phrases
 from gensim.corpora import Dictionary
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.wordnet import WordNetLemmatizer
