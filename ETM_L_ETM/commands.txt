@@ -1,0 +1,8 @@
+
+python main.py --mode train --dataset data --data_path data --num_topics 50 --train_embeddings 1 --epochs 1000
+
+python main.py --mode eval --dataset data --data_path data --num_topics 50 --train_embeddings 1 --tc 1 --td 1 --load_from results\etm_data_K_50_Htheta_800_Optim_adam_Clip_0.0_ThetaAct_relu_Lr_0.005_Bsz_1000_RhoSize_300_trainEmbeddings_1
+
+python skipgram.py --data_file corpus_300.txt
+
+python main.py --mode train --dataset data --data_path data --emb_path misc\embeddings.txt --num_topics 50 --train_embeddings 0 --epochs 1000
